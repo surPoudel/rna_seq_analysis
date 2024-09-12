@@ -21,7 +21,7 @@ def parse_parameters_comma_separate(parameter): # in future we can use any delim
 # make a function to compute the de up or down regulated
 def degs_up_down(df, pval_col="P.Value", fc_col= "logFC", p_val_cutoff = 0.05, logFC_cutoff=0.58, gene_col="geneSymbol"): #0.58 = 1.5 for log2FC
   up_deg = (df[(df[fc_col] > logFC_cutoff) & (df[pval_col] < p_val_cutoff)])[gene_col].tolist()
-  down_deg = (df[(df[fc_col] < logFC_cutoff) & (df[pval_col] < p_val_cutoff)])[gene_col].tolist()
+  down_deg = (df[(df[fc_col] < (-1*logFC_cutoff)) & (df[pval_col] < p_val_cutoff)])[gene_col].tolist()
   return up_deg, down_deg
 
 
